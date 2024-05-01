@@ -1,0 +1,83 @@
+﻿<Window x:Class="DuplicateFinder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DuplicateFinder"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        Title="Duplicate Finder By Ronja Sjögren">
+    <Grid Margin="20" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- Folders selected section -->
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Folders" Name="lblFolders"/>
+            <ListBox Grid.Row="1" Height="200" Name="FolderList" ItemsSource="{Binding Folders}" SelectionMode="Multiple"/>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10">
+                <Button Content="Add Folder" Click="AddFolder_Clicked" Width="100" Padding="3" Margin="0, 0, 20, 0"/>
+                <Button Content="Remove Folder" Click="RemoveFolder_Clicked" Width="100" Padding="3"/>
+            </StackPanel>
+        </Grid>
+        <!-- Attributes to compare section -->
+        <Grid Grid.Column="1" Grid.Row="0" Margin="20, 0, 0, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Attributes to compare" Name="lblAttributes"/>
+            <CheckBox Grid.Row="1" Content="Name" Name="chkName"/>
+            <CheckBox Grid.Row="2" Content="Date Created" Name="chkDateCreated"/>
+            <CheckBox Grid.Row="3" Content="Date Modified" Name="chkDateModified"/>
+            <CheckBox Grid.Row="4" Content="Size" Name="chkSize"/>
+            <Label Grid.Row="5" Content="File types" Name="lblSelectFileTypes"/>
+            <ListBox Grid.Row="6" Height="100" Name="FileTypeList" ItemsSource="{Binding FileTypes}" SelectionMode="Multiple"/>
+            <Button Grid.Row="7" Content="Find duplicates" Click="FindDuplicates_Clicked" Width="100" Padding="5" Margin="0, 10, 0, 0"/>
+        </Grid>
+        <!-- Results section -->
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Results" Name="lblResults"/>
+            <ScrollViewer Grid.Row="1" Height="200" Name="ResultList" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <ListView Name="lvResults" ItemsSource="{Binding Results}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Path" DisplayMemberBinding="{Binding Path}"/>
+                            <GridViewColumn Header="Size" DisplayMemberBinding="{Binding Size}"/>
+                            <GridViewColumn Header="Date Created" DisplayMemberBinding="{Binding DateCreated}"/>
+                            <GridViewColumn Header="Date Modified" DisplayMemberBinding="{Binding DateModified}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+            <Button Grid.Row="2" Content="Open" Click="OpenFile_Clicked" Width="100" Padding="5" Margin="0, 10, 0, 0"/>
+        </Grid>
+
+    </Grid>
+</Window>
