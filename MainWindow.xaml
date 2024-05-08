@@ -63,20 +63,13 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Results" Name="lblResults"/>
+
             <ScrollViewer Grid.Row="1" Height="200" Name="ResultList" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                <ListView Name="lvResults" ItemsSource="{Binding Results}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                            <GridViewColumn Header="Path" DisplayMemberBinding="{Binding Path}"/>
-                            <GridViewColumn Header="Size" DisplayMemberBinding="{Binding Size}"/>
-                            <GridViewColumn Header="Date Created" DisplayMemberBinding="{Binding DateCreated}"/>
-                            <GridViewColumn Header="Date Modified" DisplayMemberBinding="{Binding DateModified}"/>
-                        </GridView>
-                    </ListView.View>
+                <ListView Name="lvResults" >
+
                 </ListView>
             </ScrollViewer>
-            <Button Grid.Row="2" Content="Open" Click="OpenFile_Clicked" Width="100" Padding="5" Margin="0, 10, 0, 0"/>
+            <Button Grid.Row="2" Content="Delete file" Click="DeleteFile_Clicked" Width="100" Padding="5" Margin="0, 10, 0, 0"/>
         </Grid>
 
     </Grid>
